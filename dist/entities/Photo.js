@@ -23,7 +23,7 @@ __decorate([
     __metadata("design:type", String)
 ], Photo.prototype, "url", void 0);
 __decorate([
-    typeorm_1.ManyToOne((type) => User_1.User),
+    typeorm_1.ManyToOne((type) => User_1.User, { nullable: false }),
     typeorm_1.JoinColumn({ referencedColumnName: 'id' }),
     __metadata("design:type", User_1.User)
 ], Photo.prototype, "user", void 0);

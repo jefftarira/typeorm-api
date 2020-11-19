@@ -2,6 +2,7 @@ import 'reflect-metadata';
 
 import express, { Application } from 'express';
 
+import { PORT } from './config';
 import cors from 'cors';
 import { createConnection } from 'typeorm';
 import morgan from 'morgan';
@@ -18,6 +19,6 @@ app.use(express.json());
 // routes
 app.use(userRoutes);
 
-app.listen(3000);
+app.listen(PORT);
 
-console.log(`Server on port ${3000}`);
+console.log(`Server on port ${PORT}`);
