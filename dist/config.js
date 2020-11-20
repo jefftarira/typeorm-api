@@ -25,6 +25,6 @@ const result = dotenv.config();
 if (result.error) {
     throw result.error;
 }
-const { parsed: envs } = result;
-console.log(envs);
+// const envs = result.parsed;
+// console.log(envs);
 exports.PORT = process.env.PORT;
