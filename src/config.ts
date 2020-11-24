@@ -8,3 +8,5 @@ if (result.error) {
 // console.log(envs);
 
 export const PORT = process.env.PORT;
+
+export const TOKEN_SECRET = process.env.TOKEN_SECRET || 'TEST_TOKEN_SECRET';

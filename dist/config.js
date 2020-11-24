@@ -19,7 +19,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PORT = void 0;
+exports.TOKEN_SECRET = exports.PORT = void 0;
 const dotenv = __importStar(require("dotenv"));
 const result = dotenv.config();
 if (result.error) {
@@ -28,3 +28,5 @@ if (result.error) {
 // const envs = result.parsed;
 // console.log(envs);
 exports.PORT = process.env.PORT;
+exports.TOKEN_SECRET = process.env.TOKEN_SECRET || 'TEST_TOKEN_SECRET';
+//# sourceMappingURL=config.js.map

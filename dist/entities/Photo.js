@@ -31,3 +31,4 @@ Photo = __decorate([
     typeorm_1.Entity()
 ], Photo);
 exports.Photo = Photo;
+//# sourceMappingURL=Photo.js.map

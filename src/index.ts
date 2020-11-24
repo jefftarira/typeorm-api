@@ -1,24 +1,9 @@
-import 'reflect-metadata';
-
-import express, { Application } from 'express';
-
 import { PORT } from './config';
-import cors from 'cors';
-import { createConnection } from 'typeorm';
-import morgan from 'morgan';
-import userRoutes from './routes/user.routes';
+import app from './app';
 
-const app: Application = express();
-createConnection();
+function main() {
+  app.listen(PORT);
+  console.log(`Server on port ${PORT}`);
+}
 
-//middlewares
-app.use(cors());
-app.use(morgan('dev'));
-app.use(express.json());
-
-// routes
-app.use(userRoutes);
-
-app.listen(PORT);
-
-console.log(`Server on port ${PORT}`);
+main();

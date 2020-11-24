@@ -11,15 +11,6 @@ export const getUsers = async (
   return res.json(users);
 };
 
-export const createUser = async (
-  req: Request,
-  res: Response
-): Promise<Response> => {
-  const newUser = getRepository(User).create(req.body);
-  const createdUser = await getRepository(User).save(newUser);
-  return res.json(createdUser);
-};
-
 export const getUser = async (
   req: Request,
   res: Response
