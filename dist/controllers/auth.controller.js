@@ -27,7 +27,7 @@ const signup = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     });
     newUser.password = yield newUser.encryptPassword(newUser.password);
     const createdUser = yield typeorm_1.getRepository(User_1.User).save(newUser);
-    return res.json({
+    return res.status(201).json({
         message: 'User created',
         id: createdUser.id,
         email: createdUser.email,
@@ -37,10 +37,14 @@ exports.signup = signup;
 const signin = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const user = yield typeorm_1.getRepository(User_1.User).findOne({ email: req.body.email });
     if (!user)
-        return res.status(400).json({ message: 'Email or password ir worng!' });
+        return res
+            .status(400)
+            .json({ message: 'Email or password was incorrect!' });
     const isCorrectPassword = yield user.validatePassword(req.body.password);
     if (!isCorrectPassword)
-        return res.status(400).json({ message: 'Password is worng!' });
+        return res
+            .status(400)
+            .json({ message: 'Email or password was incorrect!' });
     const token = jsonwebtoken_1.default.sign({ _id: user.id }, config_1.TOKEN_SECRET, {
         expiresIn: 86400,
     });

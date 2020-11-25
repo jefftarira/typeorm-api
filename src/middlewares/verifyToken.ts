@@ -18,7 +18,6 @@ export function TokenValidation(
   if (!token) return res.status(401).json({ message: 'Access denied' });
 
   const payload = jwt.verify(token, TOKEN_SECRET) as IPayload;
-  req.userId = payload._id;
-
+  res.locals.userId = payload._id;
   next();
 }

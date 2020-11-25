@@ -11,7 +11,7 @@ function TokenValidation(req, res, next) {
     if (!token)
         return res.status(401).json({ message: 'Access denied' });
     const payload = jsonwebtoken_1.default.verify(token, config_1.TOKEN_SECRET);
-    req.userId = payload._id;
+    res.locals.userId = payload._id;
     next();
 }
 exports.TokenValidation = TokenValidation;

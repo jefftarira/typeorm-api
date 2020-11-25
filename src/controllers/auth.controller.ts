@@ -18,7 +18,7 @@ export const signup = async (
   });
   newUser.password = await newUser.encryptPassword(newUser.password);
   const createdUser = await getRepository(User).save(newUser);
-  return res.json({
+  return res.status(201).json({
     message: 'User created',
     id: createdUser.id,
     email: createdUser.email,
@@ -31,14 +31,18 @@ export const signin = async (
 ): Promise<Response> => {
   const user = await getRepository(User).findOne({ email: req.body.email });
   if (!user)
-    return res.status(400).json({ message: 'Email or password ir worng!' });
+    return res
+      .status(400)
+      .json({ message: 'Email or password was incorrect!' });
 
   const isCorrectPassword: boolean = await user.validatePassword(
     req.body.password
   );
 
   if (!isCorrectPassword)
-    return res.status(400).json({ message: 'Password is worng!' });
+    return res
+      .status(400)
+      .json({ message: 'Email or password was incorrect!' });
 
   const token: string = jwt.sign({ _id: user.id }, TOKEN_SECRET, {
     expiresIn: 86400,
