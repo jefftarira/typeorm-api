@@ -13,8 +13,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.profile = exports.signin = exports.signup = void 0;
-const config_1 = require("../config");
 const User_1 = require("../entities/User");
+const config_1 = __importDefault(require("../config"));
 const typeorm_1 = require("typeorm");
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const signup = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -45,8 +45,8 @@ const signin = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         return res
             .status(400)
             .json({ message: 'Email or password was incorrect!' });
-    const token = jsonwebtoken_1.default.sign({ _id: user.id }, config_1.TOKEN_SECRET, {
-        expiresIn: 86400,
+    const token = jsonwebtoken_1.default.sign({ _id: user.id }, config_1.default.jwtSecret, {
+        expiresIn: '24h',
     });
     return res
         .header('auth-token', token)

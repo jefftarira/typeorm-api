@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 
-import { TOKEN_SECRET } from '../config';
 import { User } from '../entities/User';
+import config from '../config';
 import { getRepository } from 'typeorm';
 import jwt from 'jsonwebtoken';
 
@@ -44,8 +44,8 @@ export const signin = async (
       .status(400)
       .json({ message: 'Email or password was incorrect!' });
 
-  const token: string = jwt.sign({ _id: user.id }, TOKEN_SECRET, {
-    expiresIn: 86400,
+  const token: string = jwt.sign({ _id: user.id }, config.jwtSecret, {
+    expiresIn: '24h',
   });
 
   return res

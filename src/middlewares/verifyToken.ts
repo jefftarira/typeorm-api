@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 
-import { TOKEN_SECRET } from '../config';
+import config from '../config';
 import jwt from 'jsonwebtoken';
 
 interface IPayload {
@@ -17,7 +17,12 @@ export function TokenValidation(
   const token = req.header('auth-token');
   if (!token) return res.status(401).json({ message: 'Access denied' });
 
-  const payload = jwt.verify(token, TOKEN_SECRET) as IPayload;
-  res.locals.userId = payload._id;
+  try {
+    const payload = jwt.verify(token, config.jwtSecret) as IPayload;
+    res.locals.userId = payload._id;
+  } catch (e) {
+    return res.status(401).json({ message: 'Can not verify token', error: e });
+  }
+
   next();
 }
