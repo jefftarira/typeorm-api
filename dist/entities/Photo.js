@@ -21,6 +21,14 @@ __decorate([
 __decorate([
     typeorm_1.Column(),
     __metadata("design:type", String)
+], Photo.prototype, "title", void 0);
+__decorate([
+    typeorm_1.Column({ type: 'text' }),
+    __metadata("design:type", String)
+], Photo.prototype, "description", void 0);
+__decorate([
+    typeorm_1.Column({ type: 'text' }),
+    __metadata("design:type", String)
 ], Photo.prototype, "url", void 0);
 __decorate([
     typeorm_1.ManyToOne((type) => User_1.User, { nullable: false }),

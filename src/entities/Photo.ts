@@ -13,7 +13,11 @@ export class Photo {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column() title: string;
+
+  @Column({ type: 'text' }) description: string;
+
+  @Column({ type: 'text' })
   url: string;
 
   @ManyToOne((type) => User, { nullable: false })
