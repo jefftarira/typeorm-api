@@ -1,13 +1,20 @@
-import { getPhotos, uploadPhoto } from '../controllers/photo.contoller';
+import * as photoController from '../controllers/photo.contoller';
 
 import { Router } from 'express';
+import { isAuth } from '../middlewares/verifyToken';
 import multer from '../libs/multer';
 
 const router: Router = Router();
 
 router
   .route('/photos')
-  .get(getPhotos)
-  .post(multer.single('image'), uploadPhoto);
+  .get(isAuth, photoController.getPhotos)
+  .post(isAuth, multer.single('image'), photoController.uploadPhoto);
+
+router
+  .route('/photos/:id')
+  .get(isAuth, photoController.getPhoto)
+  .put(isAuth, photoController.updatePhoto)
+  .delete(isAuth, photoController.deletePhoto);
 
 export default router;

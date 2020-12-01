@@ -9,7 +9,7 @@ interface IPayload {
   expire: number;
 }
 
-export function TokenValidation(
+export function isAuth(
   req: Request,
   res: Response,
   next: NextFunction
