@@ -1,7 +1,7 @@
 import * as photoController from '../controllers/photo.contoller';
 
 import { Router } from 'express';
-import { isAuth } from '../middlewares/verifyToken';
+import { isAuth } from '../middlewares/auth';
 import multer from '../libs/multer';
 
 const router: Router = Router();

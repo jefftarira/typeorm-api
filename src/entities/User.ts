@@ -14,7 +14,8 @@ export class User {
 
   @Column() email: string;
 
-  @Column({ type: 'text' }) password: string;
+  @Column({ type: 'text' })
+  password: string;
 
   async encryptPassword(password: string): Promise<string> {
     const salt = await bcrypt.genSalt(10);
@@ -23,5 +24,15 @@ export class User {
 
   async validatePassword(password: string): Promise<boolean> {
     return await bcrypt.compare(password, this.password);
+  }
+
+  toJSON(): unknown {
+    return {
+      id: this.id,
+      firstname: this.firstname,
+      lastname: this.lastname,
+      username: this.username,
+      email: this.email,
+    };
   }
 }

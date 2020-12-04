@@ -1,7 +1,7 @@
 import { profile, signin, signup } from '../controllers/auth.controller';
 
 import { Router } from 'express';
-import { isAuth } from '../middlewares/verifyToken';
+import { isAuth } from '../middlewares/auth';
 
 const router: Router = Router();
 

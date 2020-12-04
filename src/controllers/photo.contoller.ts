@@ -1,6 +1,5 @@
 import { Request, Response } from 'express';
 
-import Logger from '../middlewares/logger';
 import { Photo } from '../entities/Photo';
 import fs from 'fs-extra';
 import { getRepository } from 'typeorm';
@@ -10,7 +9,6 @@ export async function uploadPhoto(
   req: Request,
   res: Response
 ): Promise<Response> {
-  Logger.info('Saving photo');
   const { title, description } = req.body;
   const newPhoto = getRepository(Photo).create({
     title: title,
